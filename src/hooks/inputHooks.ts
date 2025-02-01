@@ -4,14 +4,14 @@ import { useQueryParams } from "../utils/searchParamsURL";
  * @returns {[string,function(string): {void}]}
  */
 export function useCurrentMortgage() {
-  return useQueryParams("cm", "202");
+  return useQueryParams("cm", "202000");
 }
 /**
  * Sale price in £
  * @returns {[string,function(string): {void}]}
  */
 export function useSalePrice() {
-  return useQueryParams("sp", "415");
+  return useQueryParams("sp", "415000");
 }
 /**
  * Selling Agent Rate in %
@@ -47,7 +47,7 @@ export function useBuyingSolicitorFees() {
  * @returns {[string,function(string): {void}]}
  */
 export function useHousePrice() {
-  return useQueryParams("hp", "500");
+  return useQueryParams("hp", "500000");
 }
 /**
  * Additional investment in thousands (k)
