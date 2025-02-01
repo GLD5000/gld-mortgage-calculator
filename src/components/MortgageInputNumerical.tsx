@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function MortgageInputNumerical({
   message,
