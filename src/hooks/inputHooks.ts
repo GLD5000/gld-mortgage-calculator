@@ -1,13 +1,13 @@
 import { useQueryParams } from "../utils/searchParamsURL";
 /**
- * Current mortgage amount in £k
+ * Current mortgage amount in £
  * @returns {[string,function(string): {void}]}
  */
 export function useCurrentMortgage() {
   return useQueryParams("cm", "202");
 }
 /**
- * Sale price in £k
+ * Sale price in £
  * @returns {[string,function(string): {void}]}
  */
 export function useSalePrice() {
@@ -28,7 +28,7 @@ export function useSellingSolicitorFees() {
   return useQueryParams("ssf", "1600");
 }
 /**
- * Additional investment in £k
+ * Additional investment in £
  * functions as Deposit amount in 'Buying' mode
  * @returns {[string,function(string): {void}]}
  */
@@ -43,7 +43,7 @@ export function useBuyingSolicitorFees() {
   return useQueryParams("bsf", "2400");
 }
 /**
- * House Price in £k
+ * House Price in £
  * @returns {[string,function(string): {void}]}
  */
 export function useHousePrice() {
