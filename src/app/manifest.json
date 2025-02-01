@@ -3,7 +3,7 @@
     "version": "0.1",
     "short_name": "Mortgage Calc",
     "name": "GLD Mortgage Calculator",
-    "description": "Advanced Mortgage Calculator that gives you all the information you need for your next move.",
+    "description": "Advanced Mortgage Calculator that gives you everything you need for your next move.",
     "icons": [
         {
             "src": "icons/GLD144.png",
