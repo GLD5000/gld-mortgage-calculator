@@ -10,7 +10,7 @@ export default function MortgageInputNumerical({
 }: {
   message: string;
   value: number | string;
-  setValue: (value: string) => void; //eslint-disable-line
+  setValue: (value: string) => void;
   unit?: string;
 }) {
   const [state, setState] = useState(value);

@@ -9,7 +9,7 @@ export default function MortgageInputString({
 }: {
   message: string;
   value: number | string;
-  setValue: (value: string) => void; //eslint-disable-line
+  setValue: (value: string) => void;
 }) {
   const [state, setState] = useState(value);
 
