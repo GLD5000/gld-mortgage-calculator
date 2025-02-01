@@ -1,9 +1,9 @@
 {
     "manifest_version": "3",
     "version": "0.1",
-    "short_name": "Dev 2.0",
-    "name": "GLD Dev 2.0",
-    "description": "Content development and management system with static HTML, JS and CSS exports plus tools and docs for developers and non-technical colleagues",
+    "short_name": "Mortgage Calc",
+    "name": "GLD Mortgage Calculator",
+    "description": "Advanced Mortgage Calculator that gives you all the information you need for your next move.",
     "icons": [
         {
             "src": "icons/GLD144.png",
