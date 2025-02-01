@@ -69,7 +69,7 @@ export function useMortgageTerm() {
  * @returns {[string,function(string): {void}]}
  */
 export function useMortgageRate() {
-  return useQueryParams("mr", "5");
+  return useQueryParams("mr", "5.19");
 }
 /**
  * Product Fee in £
@@ -90,5 +90,5 @@ export function useFixedTerm() {
  * @returns {[string,function(string): {void}]}
  */
 export function useRegularOverpayment() {
-  return useQueryParams("ro", "3");
+  return useQueryParams("ro", "");
 }
