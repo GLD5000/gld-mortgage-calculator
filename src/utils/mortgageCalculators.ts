@@ -75,7 +75,7 @@ export function calculatePayment(
   principal: number,
 
   mortgageTerm: number,
-  mortgageRate: number,
+  mortgageRate: number
 ) {
   const pmt = PMT(mortgageRate * 0.01, mortgageTerm, principal);
   return pmt;
@@ -88,8 +88,43 @@ export function calculateTotalCost(
   regularOverpayment: number
 ) {
   const monthlyProductFee = productFee / (fixedTerm || mortgageTerm) / 12;
-  return Math.round(100 *(monthlyProductFee + pmt + regularOverpayment))/100;
+  return Math.round(100 * (monthlyProductFee + pmt + regularOverpayment)) / 100;
 }
 export function calculateAgentFees(salePrice: number, agentRate: number) {
   return Math.round(salePrice * (agentRate * 0.01));
+}
+export function calculateEquityIncrease(
+  principal: number,
+  mortgageRate: number,
+  termOfInterest: number,
+  monthlyPayment: number
+) {
+  const termOfInterestMonths = termOfInterest * 12;
+  const monthlyRate = mortgageRate / 12 / 100;
+  let totalEquity = 0;
+  let outstandingBalance = principal;
+  for (let i = 0; i < termOfInterestMonths; i += 1) {
+    const interest = outstandingBalance * monthlyRate;
+    const newBalance = outstandingBalance + interest - monthlyPayment;
+    const difference = outstandingBalance - newBalance;
+    totalEquity += difference;
+    outstandingBalance = newBalance;
+  }
+
+  return {
+    totalEquity,
+    averageMonthlyEquity: totalEquity / termOfInterestMonths,
+  };
+}
+
+export function calculateInvestmentReturn(
+  totalEquity: number,
+  termOfInterest: number,
+  interestRate: number
+) {
+  const monthlyRate = interestRate / 12 / 100;
+  const periods = termOfInterest * 12;
+  const requiredPrincipal =
+    totalEquity / (Math.pow(1 + monthlyRate, periods) - 1);
+  return Math.round(requiredPrincipal);
 }

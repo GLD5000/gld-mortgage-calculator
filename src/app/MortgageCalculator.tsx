@@ -19,6 +19,8 @@ import {
 } from "../hooks/inputHooks";
 import {
   calculateAgentFees,
+  calculateEquityIncrease,
+  calculateInvestmentReturn,
   calculateLTV,
   calculatePayment,
   calculatePrincipal,
@@ -89,7 +91,17 @@ export default function MortgageCalculator() {
     Number(mortgageTerm),
     Number(regularOverpayment)
   );
-
+  const { totalEquity, averageMonthlyEquity } = calculateEquityIncrease(
+    principal,
+    Number(mortgageRate),
+    Number(fixedTerm || 1),
+    pmt
+  );
+  const equivalentInvestment = calculateInvestmentReturn(
+    totalEquity,
+    Number(fixedTerm || 1),
+    Number(mortgageRate)
+  );
   return (
     <>
       <div className="grid gap-2 w-full bg-black justify-start">
@@ -229,6 +241,25 @@ export default function MortgageCalculator() {
             <MortgageOutput
               message="Cost inc. Fees"
               value={`${totalMonthlyCost.toLocaleString()}`}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="grid gap-2 w-full bg-black justify-start">
+        <h2 className="text-left text-2xl">Your Equity Growth</h2>
+        <div className="grid">
+          <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
+            <MortgageOutput
+              message={`${Number(fixedTerm || 1)} Year Total`}
+              value={`${totalEquity.toLocaleString()}`}
+            />
+            <MortgageOutput
+              message={`Monthly Average`}
+              value={`${averageMonthlyEquity.toLocaleString()}`}
+            />
+            <MortgageOutput
+              message={`Equiv. Investment`}
+              value={`${equivalentInvestment.toLocaleString()}`}
             />
           </div>
         </div>
