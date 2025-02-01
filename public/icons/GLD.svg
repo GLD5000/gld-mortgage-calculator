@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="500"
+   height="500"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (86a8ad7, 2024-10-11)"
+   sodipodi:docname="GLD.svg"
+   inkscape:export-filename="GLD192.png"
+   inkscape:export-xdpi="36.863998"
+   inkscape:export-ydpi="36.863998"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.35945918"
+     inkscape:cx="721.91786"
+     inkscape:cy="239.24831"
+     inkscape:window-width="1278"
+     inkscape:window-height="1000"
+     inkscape:window-x="-7"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#1a1a1a;stroke-width:0.032"
+       id="background"
+       width="16"
+       height="16"
+       x="0"
+       y="0" />
+    <path
+       id="G"
+       d="M 6,2 H 2 V 3 H 1 V 10 H 2 V 11 H 6 V 6 H 4 v 2 h 1 v 1 H 3 V 4 H 4 v 1 h 2 z"
+       style="fill:#ffffff" />
+    <path
+       id="L"
+       d="M 10,14 H 7 l -1e-7,-10 H 9 l 10e-8,8 H 10 Z"
+       style="fill:#ffffff" />
+    <path
+       id="D"
+       d="m 10,2 v 9 h 4 v -1 h 1 V 3 H 14 V 2 Z m 2,2 h 1 v 5 h -1 z"
+       style="fill:#ffffff" />
+  </g>
+</svg>
