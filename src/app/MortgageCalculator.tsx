@@ -21,18 +21,22 @@ import {
 } from "../hooks/inputHooks";
 import {
   calculateAgentFees,
+  calculateEquityGrowth,
   calculateEquityIncrease,
   calculateHousePriceInflation,
+  calculateInitialEquity,
   calculateInvestmentReturn,
   calculateLTV,
   calculatePayment,
   calculatePrincipal,
   calculateProceeds,
+  calculateResultingEquity,
   calculateStampDuty,
   calculateTotalBorrowing,
   calculateTotalBuyingFees,
   calculateTotalCapital,
   calculateTotalCost,
+  calculateTotalEquityYield,
   calculateTotalSellingFees,
 } from "../utils/mortgageCalculators";
 
@@ -101,20 +105,32 @@ export default function MortgageCalculator() {
     calculateEquityIncrease(
       principal,
       Number(mortgageRate),
-      Number(periodOfInvestment||fixedTerm),
+      Number(periodOfInvestment || fixedTerm),
       pmt
     );
   const equivalentInvestment = calculateInvestmentReturn(
     totalEquityPayoff,
-    Number(periodOfInvestment||fixedTerm),
+    Number(periodOfInvestment || fixedTerm),
     Number(mortgageRate)
   );
   const housePriceInflation = calculateHousePriceInflation(
     Number(housePrice),
     Number(housePriceInflationRate),
-    Number(periodOfInvestment||fixedTerm)
+    Number(periodOfInvestment || fixedTerm)
   );
-  const totalYield = housePriceInflation + totalEquityPayoff;
+  const totalEquityYield = calculateTotalEquityYield(
+    housePriceInflation,
+    totalEquityPayoff
+  );
+  const initialEquity = calculateInitialEquity(
+    totalCapital,
+    Number(productFee)
+  );
+  const resultingEquity = calculateResultingEquity(
+    totalEquityYield,
+    initialEquity,
+  );
+  const equityGrowth = calculateEquityGrowth(resultingEquity,proceeds, Number(additionalCapital))
   return (
     <>
       <HouseSelling
@@ -167,13 +183,13 @@ export default function MortgageCalculator() {
         fixedTerm={fixedTerm}
         totalEquityPayoff={totalEquityPayoff}
         housePriceInflation={housePriceInflation}
-        totalYield={totalYield}
-        totalCapital={totalCapital}
-        principal={principal}
-        proceeds={proceeds}
+        totalEquityYield={totalEquityYield}
+        resultingEquity={resultingEquity}
         equivalentInvestment={equivalentInvestment}
         periodOfInvestment={periodOfInvestment}
         setPeriodOfInvestment={setPeriodOfInvestment}
+        initialEquity={initialEquity}
+        equityGrowth={equityGrowth}
       />
     </>
   );
@@ -185,13 +201,13 @@ function EquityGrowth({
   fixedTerm,
   totalEquityPayoff,
   housePriceInflation,
-  totalYield,
-  totalCapital,
-  principal,
-  proceeds,
+  totalEquityYield,
+  resultingEquity,
   equivalentInvestment,
   periodOfInvestment,
   setPeriodOfInvestment,
+  initialEquity,
+  equityGrowth,
 }: {
   housePriceInflationRate: string;
   setHousePriceInflationRate: (value: string) => void;
@@ -199,13 +215,13 @@ function EquityGrowth({
   fixedTerm: string;
   totalEquityPayoff: number;
   housePriceInflation: number;
-  totalYield: number;
-  totalCapital: number;
-  principal: number;
-  proceeds: number;
+  totalEquityYield: number;
+  resultingEquity: number;
   equivalentInvestment: number;
   periodOfInvestment: string;
   setPeriodOfInvestment: (value: string) => void;
+  initialEquity:number;
+  equityGrowth:number;
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
@@ -232,7 +248,7 @@ function EquityGrowth({
             value={`${averageMonthlyEquityPayoff.toLocaleString()}`}
           />
           <MortgageOutput
-            message={`${Number(periodOfInvestment||fixedTerm)} Year Payoff`}
+            message={`${Number(periodOfInvestment || fixedTerm)} Year Payoff`}
             value={`${totalEquityPayoff.toLocaleString()}`}
           />
           <MortgageOutput
@@ -241,19 +257,19 @@ function EquityGrowth({
           />
           <MortgageOutput
             message={`Total Yield`}
-            value={`${totalYield.toLocaleString()}`}
+            value={`${totalEquityYield.toLocaleString()}`}
           />
+          
           <MortgageOutput
-            message="Total Equity"
-            value={`${(totalCapital + totalEquityPayoff).toLocaleString()}`}
-          />
+            message="Initial Equity"
+            value={`${(initialEquity).toLocaleString()}`}
+          />          <MortgageOutput
+          message="Final Equity"
+          value={`${(resultingEquity).toLocaleString()}`}
+        />
           <MortgageOutput
-            message="Equity Increase"
-            value={`${(
-              principal -
-              totalEquityPayoff -
-              proceeds
-            ).toLocaleString()}`}
+            message="Equity Growth"
+            value={`${equityGrowth.toLocaleString()}`}
           />
           <MortgageOutput
             message={`Equiv. Investment`}
