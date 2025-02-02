@@ -181,3 +181,14 @@ export function calculateEquityGrowth(
 
   return resultingEquity - proceeds - additionalCapital;
 }
+
+export function calculateCompoundingInvestment(
+  investmentRate: number,
+  periodOfInvestment: number,
+  investmentAmount: number
+) {
+  const periods = periodOfInvestment * 12;
+  const monthlyRate = investmentRate / 12 / 100;
+
+  return investmentAmount * (1 + monthlyRate) ** periods;
+}

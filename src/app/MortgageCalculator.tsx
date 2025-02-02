@@ -60,8 +60,7 @@ export default function MortgageCalculator() {
   const [housePriceInflationRate, setHousePriceInflationRate] =
     useHousePriceInflationRate();
   const [periodOfInvestment, setPeriodOfInvestment] = usePeriodOfInvestment();
-  const [apiInflationRate, setApiInflationRate] =
-    useApiInflationRate();
+  const [apiInflationRate, setApiInflationRate] = useApiInflationRate();
 
   const agentFees = calculateAgentFees(Number(salePrice), Number(agentRate));
   const totalSellingFees = calculateTotalSellingFees(
@@ -188,7 +187,7 @@ export default function MortgageCalculator() {
         housePriceInflationRate={housePriceInflationRate}
         setHousePriceInflationRate={setHousePriceInflationRate}
         apiInflationRate={apiInflationRate}
-setApiInflationRate={setApiInflationRate}
+        setApiInflationRate={setApiInflationRate}
         averageMonthlyEquityPayoff={averageMonthlyEquityPayoff}
         fixedTerm={fixedTerm}
         totalEquityPayoff={totalEquityPayoff}
@@ -219,7 +218,7 @@ function EquityGrowth({
   // initialEquity,
   equityGrowth,
   apiInflationRate,
-setApiInflationRate,
+  setApiInflationRate,
 }: {
   housePriceInflationRate: string;
   setHousePriceInflationRate: (value: string) => void;
@@ -236,7 +235,6 @@ setApiInflationRate,
   equityGrowth: number;
   apiInflationRate: string;
   setApiInflationRate: (value: string) => void;
-
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
@@ -255,7 +253,7 @@ setApiInflationRate,
             value={housePriceInflationRate}
             setValue={setHousePriceInflationRate}
           />
-                    <MortgageInputNumerical
+          <MortgageInputNumerical
             message="API Inflation"
             unit="%"
             value={apiInflationRate}
