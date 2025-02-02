@@ -112,8 +112,8 @@ export function calculateEquityIncrease(
   }
 
   return {
-    totalEquity,
-    averageMonthlyEquity: totalEquity / termOfInterestMonths,
+    totalEquityPayoff:totalEquity,
+    averageMonthlyEquityPayoff: totalEquity / termOfInterestMonths,
   };
 }
 
@@ -127,4 +127,14 @@ export function calculateInvestmentReturn(
   const requiredPrincipal =
     totalEquity / (Math.pow(1 + monthlyRate, periods) - 1);
   return Math.round(requiredPrincipal);
+}
+
+export function calculateHousePriceInflation(
+  housePrice: number,
+  housePriceInflationRate: number,
+  termOfInterest: number
+) {
+  const yearlyRate = housePriceInflationRate / 100;
+  const periods = termOfInterest;
+  return Math.round(housePrice * yearlyRate * periods);
 }

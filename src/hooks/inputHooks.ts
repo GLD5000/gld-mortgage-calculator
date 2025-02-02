@@ -92,3 +92,10 @@ export function useFixedTerm() {
 export function useRegularOverpayment() {
   return useQueryParams("ro", "");
 }
+/**
+ * House Price Inflation Rate in %
+ * @returns {[string,function(string): {void}]}
+ */
+export function useHousePriceInflationRate() {
+  return useQueryParams("hpi", "2");
+}
