@@ -22,12 +22,15 @@ import {
 } from "../hooks/inputHooks";
 import {
   calculateAgentFees,
+  calculateCompoundingInvestment,
   calculateEquityGrowth,
   calculateEquityIncrease,
   calculateHousePriceInflation,
   calculateInitialEquity,
+  calculateInvestmentProfit,
   calculateInvestmentReturn,
   calculateLTV,
+  calculateMonthlyRentalDifference,
   calculatePayment,
   calculatePrincipal,
   calculateProceeds,
@@ -38,6 +41,7 @@ import {
   calculateTotalCapital,
   calculateTotalCost,
   calculateTotalEquityYield,
+  calculateTotalRentalDifference,
   calculateTotalSellingFees,
 } from "../utils/mortgageCalculators";
 import EquityGrowth from "../components/sections/EquityGrowth";
@@ -145,7 +149,22 @@ export default function MortgageCalculator() {
     Number(periodOfInvestment || fixedTerm),
     Number(mortgageRate)
   );
-  const monthlyCostDiffRent = Number(rent) - totalMonthlyCost;
+  const monthlyCostDiffRent = calculateMonthlyRentalDifference(
+    Number(rent),
+    totalMonthlyCost
+  );
+  const totalCostDiffRent = calculateTotalRentalDifference(
+    Number(periodOfInvestment || fixedTerm),
+    monthlyCostDiffRent
+  );
+  const investmentAmount = proceeds + Number(additionalCapital);
+  const investmentYield = calculateCompoundingInvestment(
+    Number(investmentRate),
+    Number(periodOfInvestment || fixedTerm),
+    investmentAmount
+  );
+  const investmentProfit = calculateInvestmentProfit(investmentYield,
+    totalCostDiffRent, Number(apiInflationRate)) ;
   return (
     <>
       <HouseSelling
@@ -214,6 +233,9 @@ export default function MortgageCalculator() {
         rent={rent}
         setRent={setRent}
         monthlyCostDiffRent={monthlyCostDiffRent}
+        totalCostDiffRent={totalCostDiffRent}
+        investmentYield={investmentYield}
+        investmentProfit={investmentProfit}
         // fixedTerm={fixedTerm}
         // periodOfInvestment={periodOfInvestment}
       />

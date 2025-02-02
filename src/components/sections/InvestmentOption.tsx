@@ -8,6 +8,9 @@ export default function InvestmentOption({
   rent,
   setRent,
   monthlyCostDiffRent,
+  totalCostDiffRent,
+  investmentYield,
+  investmentProfit,
 }: //   fixedTerm,
 //   periodOfInvestment,
 //   apiInflationRate,
@@ -18,6 +21,9 @@ export default function InvestmentOption({
   rent: string;
   setRent: (value: string) => void;
   monthlyCostDiffRent: number;
+  totalCostDiffRent: number;
+  investmentYield: number;
+  investmentProfit: number;
   //   periodOfInvestment: string;
   //   fixedTerm: string;
   //   apiInflationRate: string;
@@ -44,10 +50,18 @@ export default function InvestmentOption({
           <MortgageOutput
             message="Month Cost diff"
             value={`${monthlyCostDiffRent.toLocaleString()}`}
-          />{" "}
+          />
+          <MortgageOutput
+            message="Total Cost diff"
+            value={`${totalCostDiffRent.toLocaleString()}`}
+          />
           <MortgageOutput
             message="Investment Yield"
-            value={`${monthlyCostDiffRent.toLocaleString()}`}
+            value={`${investmentYield.toLocaleString()}`}
+          />
+          <MortgageOutput
+            message="Profit"
+            value={`${investmentProfit.toLocaleString()}`}
           />
         </div>
       </div>

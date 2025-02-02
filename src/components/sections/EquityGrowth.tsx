@@ -86,7 +86,7 @@ export default function EquityGrowth({
             value={`${resultingEquity.toLocaleString()}`}
           /> */}
           <MortgageOutput
-            message="Profit after costs"
+            message="Profit"
             value={`${equityGrowth.toLocaleString()}`}
           />
           <MortgageOutput

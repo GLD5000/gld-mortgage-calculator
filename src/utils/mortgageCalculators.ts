@@ -190,5 +190,36 @@ export function calculateCompoundingInvestment(
   const periods = periodOfInvestment * 12;
   const monthlyRate = investmentRate / 12 / 100;
 
-  return investmentAmount * (1 + monthlyRate) ** periods;
+  return investmentAmount * (1 + monthlyRate) ** periods - investmentAmount;
+}
+export function calculateMonthlyRentalDifference(
+  rent: number,
+  totalMonthlyCost: number
+) {
+  return rent - totalMonthlyCost;
+}
+
+export function calculateTotalRentalDifference(
+  periodOfInvestment: number,
+  monthlyCostDiffRent: number
+) {
+  const monthlyPeriods = periodOfInvestment * 12;
+  return monthlyCostDiffRent * monthlyPeriods;
+}
+
+export function calculateInvestmentProfit(
+  investmentYield: number,
+  totalCostDiffRent: number,
+  apiInflationRate: number
+
+) {
+  const grossProfit = investmentYield - totalCostDiffRent;
+  if (apiInflationRate && grossProfit > 0) {
+    const inflationDecimal = 1 - apiInflationRate * 0.01;
+    return grossProfit * inflationDecimal;
+  } else if (apiInflationRate && grossProfit < 0) {
+    const inflationDecimal = 1 + apiInflationRate * 0.01;
+    return grossProfit * inflationDecimal;
+  }
+  return grossProfit;
 }
