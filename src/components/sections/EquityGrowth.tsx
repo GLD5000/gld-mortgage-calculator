@@ -6,12 +6,12 @@ export default function EquityGrowth({
   housePriceInflationRate,
   setHousePriceInflationRate,
   averageMonthlyEquityPayoff,
-  fixedTerm,
   totalEquityPayoff,
   housePriceInflation,
   totalEquityYield,
   // resultingEquity,
   equivalentInvestment,
+  fixedTerm,
   periodOfInvestment,
   setPeriodOfInvestment,
   // initialEquity,
@@ -22,13 +22,13 @@ export default function EquityGrowth({
   housePriceInflationRate: string;
   setHousePriceInflationRate: (value: string) => void;
   averageMonthlyEquityPayoff: number;
-  fixedTerm: string;
   totalEquityPayoff: number;
   housePriceInflation: number;
   totalEquityYield: number;
   // resultingEquity: number;
   equivalentInvestment: number;
   periodOfInvestment: string;
+  fixedTerm: string;
   setPeriodOfInvestment: (value: string) => void;
   // initialEquity: number;
   equityGrowth: number;

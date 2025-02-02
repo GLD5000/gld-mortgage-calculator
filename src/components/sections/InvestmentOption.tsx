@@ -1,16 +1,26 @@
 import React from "react";
 import MortgageInputNumerical from "../MortgageInputNumerical";
+import MortgageOutput from "../MortgageOutput";
 
 export default function InvestmentOption({
   investmentRate,
   setInvestmentRate,
   rent,
   setRent,
-}: {
+  monthlyCostDiffRent,
+}: //   fixedTerm,
+//   periodOfInvestment,
+//   apiInflationRate,
+
+{
   investmentRate: string;
   setInvestmentRate: (value: string) => void;
   rent: string;
   setRent: (value: string) => void;
+  monthlyCostDiffRent: number;
+  //   periodOfInvestment: string;
+  //   fixedTerm: string;
+  //   apiInflationRate: string;
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
@@ -31,14 +41,14 @@ export default function InvestmentOption({
         </div>
 
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
-          {/* <MortgageOutput
-              message="Initial Equity"
-              value={`${initialEquity.toLocaleString()}`}
-            />{" "}
-            <MortgageOutput
-              message="Final Equity"
-              value={`${resultingEquity.toLocaleString()}`}
-            /> */}
+          <MortgageOutput
+            message="Month Cost diff"
+            value={`${monthlyCostDiffRent.toLocaleString()}`}
+          />{" "}
+          <MortgageOutput
+            message="Investment Yield"
+            value={`${monthlyCostDiffRent.toLocaleString()}`}
+          />
         </div>
       </div>
     </div>

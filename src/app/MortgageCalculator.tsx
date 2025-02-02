@@ -145,6 +145,7 @@ export default function MortgageCalculator() {
     Number(periodOfInvestment || fixedTerm),
     Number(mortgageRate)
   );
+  const monthlyCostDiffRent = Number(rent) - totalMonthlyCost;
   return (
     <>
       <HouseSelling
@@ -197,12 +198,12 @@ export default function MortgageCalculator() {
         setApiInflationRate={setApiInflationRate}
         averageMonthlyEquityPayoff={averageMonthlyEquityPayoff}
         fixedTerm={fixedTerm}
+        periodOfInvestment={periodOfInvestment}
         totalEquityPayoff={totalEquityPayoff}
         housePriceInflation={housePriceInflation}
         totalEquityYield={totalEquityYield}
         // resultingEquity={resultingEquity}
         equivalentInvestment={equivalentInvestment}
-        periodOfInvestment={periodOfInvestment}
         setPeriodOfInvestment={setPeriodOfInvestment}
         // initialEquity={initialEquity}
         equityGrowth={equityGrowth}
@@ -212,6 +213,9 @@ export default function MortgageCalculator() {
         setInvestmentRate={setInvestmentRate}
         rent={rent}
         setRent={setRent}
+        monthlyCostDiffRent={monthlyCostDiffRent}
+        // fixedTerm={fixedTerm}
+        // periodOfInvestment={periodOfInvestment}
       />
     </>
   );
