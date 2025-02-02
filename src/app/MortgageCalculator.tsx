@@ -19,6 +19,7 @@ import {
   useApiInflationRate,
   useInvestmentRate,
   useRent,
+  useOptionalInvestmentAmount,
 } from "../hooks/inputHooks";
 import {
   calculateAgentFees,
@@ -72,6 +73,8 @@ export default function MortgageCalculator() {
   const [apiInflationRate, setApiInflationRate] = useApiInflationRate();
   const [investmentRate, setInvestmentRate] = useInvestmentRate();
   const [rent, setRent] = useRent();
+  const [optionalInvestmentAmount, setOptionalInvestmentAmount] =
+    useOptionalInvestmentAmount();
 
   const agentFees = calculateAgentFees(Number(salePrice), Number(agentRate));
   const totalSellingFees = calculateTotalSellingFees(
@@ -157,14 +160,19 @@ export default function MortgageCalculator() {
     Number(periodOfInvestment || fixedTerm),
     monthlyCostDiffRent
   );
-  const investmentAmount = proceeds + Number(additionalCapital);
+  const investmentAmount = optionalInvestmentAmount
+    ? Number(optionalInvestmentAmount)
+    : proceeds + Number(additionalCapital);
   const investmentYield = calculateCompoundingInvestment(
     Number(investmentRate),
     Number(periodOfInvestment || fixedTerm),
     investmentAmount
   );
-  const investmentProfit = calculateInvestmentProfit(investmentYield,
-    totalCostDiffRent, Number(apiInflationRate)) ;
+  const investmentProfit = calculateInvestmentProfit(
+    investmentYield,
+    totalCostDiffRent,
+    Number(apiInflationRate)
+  );
   return (
     <>
       <HouseSelling
@@ -221,10 +229,8 @@ export default function MortgageCalculator() {
         totalEquityPayoff={totalEquityPayoff}
         housePriceInflation={housePriceInflation}
         totalEquityYield={totalEquityYield}
-        // resultingEquity={resultingEquity}
         equivalentInvestment={equivalentInvestment}
         setPeriodOfInvestment={setPeriodOfInvestment}
-        // initialEquity={initialEquity}
         equityGrowth={equityGrowth}
       />
       <InvestmentOption
@@ -236,8 +242,8 @@ export default function MortgageCalculator() {
         totalCostDiffRent={totalCostDiffRent}
         investmentYield={investmentYield}
         investmentProfit={investmentProfit}
-        // fixedTerm={fixedTerm}
-        // periodOfInvestment={periodOfInvestment}
+        optionalInvestmentAmount={Number(optionalInvestmentAmount)}
+        setOptionalInvestmentAmount={setOptionalInvestmentAmount}
       />
     </>
   );

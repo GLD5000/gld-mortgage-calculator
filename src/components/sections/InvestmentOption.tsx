@@ -11,11 +11,9 @@ export default function InvestmentOption({
   totalCostDiffRent,
   investmentYield,
   investmentProfit,
-}: //   fixedTerm,
-//   periodOfInvestment,
-//   apiInflationRate,
-
-{
+  optionalInvestmentAmount,
+  setOptionalInvestmentAmount,
+}: {
   investmentRate: string;
   setInvestmentRate: (value: string) => void;
   rent: string;
@@ -24,15 +22,19 @@ export default function InvestmentOption({
   totalCostDiffRent: number;
   investmentYield: number;
   investmentProfit: number;
-  //   periodOfInvestment: string;
-  //   fixedTerm: string;
-  //   apiInflationRate: string;
+  optionalInvestmentAmount: number;
+  setOptionalInvestmentAmount: (value: string) => void;
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
       <h2 className="text-left text-2xl">Investment Growth</h2>
       <div className="grid">
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
+          <MortgageInputNumerical
+            message="Investment Amount"
+            value={optionalInvestmentAmount}
+            setValue={setOptionalInvestmentAmount}
+          />
           <MortgageInputNumerical
             message="Investment Rate"
             unit="%"

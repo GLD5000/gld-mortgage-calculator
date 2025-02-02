@@ -127,3 +127,10 @@ export function useInvestmentRate() {
 export function useRent() {
   return useQueryParams("r", "2000");
 }
+/**
+ * Investment Amount in £
+ * @returns {[string,function(string): {void}]}
+ */
+export function useOptionalInvestmentAmount() {
+  return useQueryParams("ia");
+}
