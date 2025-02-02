@@ -143,7 +143,7 @@ export default function MortgageCalculator() {
         principal={principal}
         loanToValue={loanToValue}
       />
-      <YourMortgage
+      <Mortgage
         additionalLoan={additionalLoan}
         setAdditionalLoan={setAdditionalLoan}
         mortgageTerm={mortgageTerm}
@@ -209,7 +209,7 @@ function EquityGrowth({
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
-      <h2 className="text-left text-2xl">Your Equity Growth</h2>
+      <h2 className="text-left text-2xl">Equity Growth</h2>
       <div className="grid">
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
           <MortgageInputNumerical
@@ -265,7 +265,7 @@ function EquityGrowth({
   );
 }
 
-function YourMortgage({
+function Mortgage({
   additionalLoan,
   setAdditionalLoan,
   mortgageTerm,
@@ -300,7 +300,7 @@ function YourMortgage({
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
-      <h2 className="text-left text-2xl">Your Mortgage</h2>
+      <h2 className="text-left text-2xl">Mortgage</h2>
       <div className="grid">
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
           <MortgageInputNumerical
