@@ -113,3 +113,17 @@ export function usePeriodOfInvestment() {
 export function useApiInflationRate() {
   return useQueryParams("api");
 }
+/**
+ * Alternative Investment Rate in %
+ * @returns {[string,function(string): {void}]}
+ */
+export function useInvestmentRate() {
+  return useQueryParams("air", "5");
+}
+/**
+ * Rent in £
+ * @returns {[string,function(string): {void}]}
+ */
+export function useRent() {
+  return useQueryParams("r", "2000");
+}

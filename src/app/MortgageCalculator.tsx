@@ -19,6 +19,8 @@ import {
   useHousePriceInflationRate,
   usePeriodOfInvestment,
   useApiInflationRate,
+  useInvestmentRate,
+  useRent,
 } from "../hooks/inputHooks";
 import {
   calculateAgentFees,
@@ -61,6 +63,8 @@ export default function MortgageCalculator() {
     useHousePriceInflationRate();
   const [periodOfInvestment, setPeriodOfInvestment] = usePeriodOfInvestment();
   const [apiInflationRate, setApiInflationRate] = useApiInflationRate();
+  const [investmentRate, setInvestmentRate] = useInvestmentRate();
+  const [rent, setRent] = useRent();
 
   const agentFees = calculateAgentFees(Number(salePrice), Number(agentRate));
   const totalSellingFees = calculateTotalSellingFees(
