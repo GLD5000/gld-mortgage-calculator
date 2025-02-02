@@ -99,3 +99,10 @@ export function useRegularOverpayment() {
 export function useHousePriceInflationRate() {
   return useQueryParams("hpi", "2");
 }
+/**
+ * Period of Interest in Years (for investment comparison)
+ * @returns {[string,function(string): {void}]}
+ */
+export function usePeriodOfInvestment() {
+  return useQueryParams("poi");
+}

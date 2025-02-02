@@ -17,6 +17,7 @@ import {
   useFixedTerm,
   useRegularOverpayment,
   useHousePriceInflationRate,
+  usePeriodOfInvestment,
 } from "../hooks/inputHooks";
 import {
   calculateAgentFees,
@@ -53,6 +54,7 @@ export default function MortgageCalculator() {
   const [regularOverpayment, setRegularOverpayment] = useRegularOverpayment();
   const [housePriceInflationRate, setHousePriceInflationRate] =
     useHousePriceInflationRate();
+  const [periodOfInvestment, setPeriodOfInvestment] = usePeriodOfInvestment();
 
   const agentFees = calculateAgentFees(Number(salePrice), Number(agentRate));
   const totalSellingFees = calculateTotalSellingFees(
@@ -95,21 +97,22 @@ export default function MortgageCalculator() {
     Number(mortgageTerm),
     Number(regularOverpayment)
   );
-  const { totalEquityPayoff, averageMonthlyEquityPayoff } = calculateEquityIncrease(
-    principal,
-    Number(mortgageRate),
-    Number(fixedTerm || 1),
-    pmt
-  );
+  const { totalEquityPayoff, averageMonthlyEquityPayoff } =
+    calculateEquityIncrease(
+      principal,
+      Number(mortgageRate),
+      Number(periodOfInvestment||fixedTerm),
+      pmt
+    );
   const equivalentInvestment = calculateInvestmentReturn(
     totalEquityPayoff,
-    Number(fixedTerm || 1),
+    Number(periodOfInvestment||fixedTerm),
     Number(mortgageRate)
   );
   const housePriceInflation = calculateHousePriceInflation(
     Number(housePrice),
     Number(housePriceInflationRate),
-    Number(fixedTerm || 1)
+    Number(periodOfInvestment||fixedTerm)
   );
   const totalYield = housePriceInflation + totalEquityPayoff;
   return (
@@ -169,6 +172,8 @@ export default function MortgageCalculator() {
         principal={principal}
         proceeds={proceeds}
         equivalentInvestment={equivalentInvestment}
+        periodOfInvestment={periodOfInvestment}
+        setPeriodOfInvestment={setPeriodOfInvestment}
       />
     </>
   );
@@ -185,6 +190,8 @@ function EquityGrowth({
   principal,
   proceeds,
   equivalentInvestment,
+  periodOfInvestment,
+  setPeriodOfInvestment,
 }: {
   housePriceInflationRate: string;
   setHousePriceInflationRate: (value: string) => void;
@@ -197,12 +204,20 @@ function EquityGrowth({
   principal: number;
   proceeds: number;
   equivalentInvestment: number;
+  periodOfInvestment: string;
+  setPeriodOfInvestment: (value: string) => void;
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
       <h2 className="text-left text-2xl">Your Equity Growth</h2>
       <div className="grid">
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
+          <MortgageInputNumerical
+            message="Investment Period"
+            unit="yrs"
+            value={periodOfInvestment}
+            setValue={setPeriodOfInvestment}
+          />
           <MortgageInputNumerical
             message="HPI Inflation"
             unit="%"
@@ -217,7 +232,7 @@ function EquityGrowth({
             value={`${averageMonthlyEquityPayoff.toLocaleString()}`}
           />
           <MortgageOutput
-            message={`${Number(fixedTerm || 1)} Year Payoff`}
+            message={`${Number(periodOfInvestment||fixedTerm)} Year Payoff`}
             value={`${totalEquityPayoff.toLocaleString()}`}
           />
           <MortgageOutput
@@ -234,7 +249,11 @@ function EquityGrowth({
           />
           <MortgageOutput
             message="Equity Increase"
-            value={`${(principal - totalEquityPayoff - proceeds).toLocaleString()}`}
+            value={`${(
+              principal -
+              totalEquityPayoff -
+              proceeds
+            ).toLocaleString()}`}
           />
           <MortgageOutput
             message={`Equiv. Investment`}

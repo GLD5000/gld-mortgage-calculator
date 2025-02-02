@@ -25,13 +25,18 @@ export default function MortgageInputNumerical({
           className="inline w-full bg-white px-[2px]"
           type="number"
           value={state}
+          onFocus={(e) => {
+            if (e.currentTarget && e.currentTarget.value) {
+              e.currentTarget.select();
+            }
+          }}
           onKeyDown={(e) => {
             if (e.key === "Enter") {
               e.currentTarget.blur();
             }
           }}
           onChange={(e) => setState(Number(e.target.value))}
-          onBlur={(e) => setValue(`${e.target.value}`)}
+          onBlur={(e) => setValue(`${Number(e.target.value) || ''}`)}
         />
         {unit !== "£" && unit}
       </div>
