@@ -118,14 +118,17 @@ export function calculateEquityIncrease(
 }
 
 export function calculateInvestmentReturn(
-  totalEquity: number,
+  equityGrowth: number,
   termOfInterest: number,
   interestRate: number
 ) {
+  if (equityGrowth <= 0){
+    return 0;
+  }
   const monthlyRate = interestRate / 12 / 100;
   const periods = termOfInterest * 12;
   const requiredPrincipal =
-    totalEquity / (Math.pow(1 + monthlyRate, periods) - 1);
+    equityGrowth / (Math.pow(1 + monthlyRate, periods) - 1);
   return Math.round(requiredPrincipal);
 }
 

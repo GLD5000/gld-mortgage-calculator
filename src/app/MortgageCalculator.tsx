@@ -108,11 +108,6 @@ export default function MortgageCalculator() {
       Number(periodOfInvestment || fixedTerm),
       pmt
     );
-  const equivalentInvestment = calculateInvestmentReturn(
-    totalEquityPayoff,
-    Number(periodOfInvestment || fixedTerm),
-    Number(mortgageRate)
-  );
   const housePriceInflation = calculateHousePriceInflation(
     Number(housePrice),
     Number(housePriceInflationRate),
@@ -128,9 +123,18 @@ export default function MortgageCalculator() {
   );
   const resultingEquity = calculateResultingEquity(
     totalEquityYield,
-    initialEquity,
+    initialEquity
   );
-  const equityGrowth = calculateEquityGrowth(resultingEquity,proceeds, Number(additionalCapital))
+  const equityGrowth = calculateEquityGrowth(
+    resultingEquity,
+    proceeds,
+    Number(additionalCapital)
+  );
+  const equivalentInvestment = calculateInvestmentReturn(
+    equityGrowth,
+    Number(periodOfInvestment || fixedTerm),
+    Number(mortgageRate)
+  );
   return (
     <>
       <HouseSelling
@@ -184,11 +188,11 @@ export default function MortgageCalculator() {
         totalEquityPayoff={totalEquityPayoff}
         housePriceInflation={housePriceInflation}
         totalEquityYield={totalEquityYield}
-        resultingEquity={resultingEquity}
+        // resultingEquity={resultingEquity}
         equivalentInvestment={equivalentInvestment}
         periodOfInvestment={periodOfInvestment}
         setPeriodOfInvestment={setPeriodOfInvestment}
-        initialEquity={initialEquity}
+        // initialEquity={initialEquity}
         equityGrowth={equityGrowth}
       />
     </>
@@ -202,11 +206,11 @@ function EquityGrowth({
   totalEquityPayoff,
   housePriceInflation,
   totalEquityYield,
-  resultingEquity,
+  // resultingEquity,
   equivalentInvestment,
   periodOfInvestment,
   setPeriodOfInvestment,
-  initialEquity,
+  // initialEquity,
   equityGrowth,
 }: {
   housePriceInflationRate: string;
@@ -216,12 +220,12 @@ function EquityGrowth({
   totalEquityPayoff: number;
   housePriceInflation: number;
   totalEquityYield: number;
-  resultingEquity: number;
+  // resultingEquity: number;
   equivalentInvestment: number;
   periodOfInvestment: string;
   setPeriodOfInvestment: (value: string) => void;
-  initialEquity:number;
-  equityGrowth:number;
+  // initialEquity: number;
+  equityGrowth: number;
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
@@ -259,16 +263,16 @@ function EquityGrowth({
             message={`Total Yield`}
             value={`${totalEquityYield.toLocaleString()}`}
           />
-          
-          <MortgageOutput
+          {/* <MortgageOutput
             message="Initial Equity"
-            value={`${(initialEquity).toLocaleString()}`}
-          />          <MortgageOutput
-          message="Final Equity"
-          value={`${(resultingEquity).toLocaleString()}`}
-        />
+            value={`${initialEquity.toLocaleString()}`}
+          />{" "}
           <MortgageOutput
-            message="Equity Growth"
+            message="Final Equity"
+            value={`${resultingEquity.toLocaleString()}`}
+          /> */}
+          <MortgageOutput
+            message="Profit after costs"
             value={`${equityGrowth.toLocaleString()}`}
           />
           <MortgageOutput
