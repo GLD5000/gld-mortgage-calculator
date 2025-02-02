@@ -122,7 +122,7 @@ export function calculateInvestmentReturn(
   termOfInterest: number,
   interestRate: number
 ) {
-  if (equityGrowth <= 0){
+  if (equityGrowth <= 0) {
     return 0;
   }
   const monthlyRate = interestRate / 12 / 100;
@@ -158,7 +158,7 @@ export function calculateInitialEquity(
 
 export function calculateResultingEquity(
   totalEquityYield: number,
-  initialEquity: number,
+  initialEquity: number
 ) {
   return initialEquity + totalEquityYield;
 }
@@ -166,7 +166,18 @@ export function calculateResultingEquity(
 export function calculateEquityGrowth(
   resultingEquity: number,
   proceeds: number,
-  additionalCapital:number,
+  additionalCapital: number,
+  apiInflationRate: number
 ) {
+  const profit = resultingEquity - proceeds - additionalCapital;
+
+  if (apiInflationRate && profit > 0) {
+    const inflationDecimal = 1 - apiInflationRate * 0.01;
+    return profit * inflationDecimal;
+  } else if (apiInflationRate && profit < 0) {
+    const inflationDecimal = 1 + apiInflationRate * 0.01;
+    return profit * inflationDecimal;
+  }
+
   return resultingEquity - proceeds - additionalCapital;
 }

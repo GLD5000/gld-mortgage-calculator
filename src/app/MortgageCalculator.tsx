@@ -18,6 +18,7 @@ import {
   useRegularOverpayment,
   useHousePriceInflationRate,
   usePeriodOfInvestment,
+  useApiInflationRate,
 } from "../hooks/inputHooks";
 import {
   calculateAgentFees,
@@ -59,6 +60,8 @@ export default function MortgageCalculator() {
   const [housePriceInflationRate, setHousePriceInflationRate] =
     useHousePriceInflationRate();
   const [periodOfInvestment, setPeriodOfInvestment] = usePeriodOfInvestment();
+  const [apiInflationRate, setApiInflationRate] =
+    useApiInflationRate();
 
   const agentFees = calculateAgentFees(Number(salePrice), Number(agentRate));
   const totalSellingFees = calculateTotalSellingFees(
@@ -128,7 +131,8 @@ export default function MortgageCalculator() {
   const equityGrowth = calculateEquityGrowth(
     resultingEquity,
     proceeds,
-    Number(additionalCapital)
+    Number(additionalCapital),
+    Number(apiInflationRate)
   );
   const equivalentInvestment = calculateInvestmentReturn(
     equityGrowth,
@@ -183,6 +187,8 @@ export default function MortgageCalculator() {
       <EquityGrowth
         housePriceInflationRate={housePriceInflationRate}
         setHousePriceInflationRate={setHousePriceInflationRate}
+        apiInflationRate={apiInflationRate}
+setApiInflationRate={setApiInflationRate}
         averageMonthlyEquityPayoff={averageMonthlyEquityPayoff}
         fixedTerm={fixedTerm}
         totalEquityPayoff={totalEquityPayoff}
@@ -212,6 +218,8 @@ function EquityGrowth({
   setPeriodOfInvestment,
   // initialEquity,
   equityGrowth,
+  apiInflationRate,
+setApiInflationRate,
 }: {
   housePriceInflationRate: string;
   setHousePriceInflationRate: (value: string) => void;
@@ -226,6 +234,9 @@ function EquityGrowth({
   setPeriodOfInvestment: (value: string) => void;
   // initialEquity: number;
   equityGrowth: number;
+  apiInflationRate: string;
+  setApiInflationRate: (value: string) => void;
+
 }) {
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
@@ -243,6 +254,12 @@ function EquityGrowth({
             unit="%"
             value={housePriceInflationRate}
             setValue={setHousePriceInflationRate}
+          />
+                    <MortgageInputNumerical
+            message="API Inflation"
+            unit="%"
+            value={apiInflationRate}
+            setValue={setApiInflationRate}
           />
         </div>
 

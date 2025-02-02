@@ -106,3 +106,10 @@ export function useHousePriceInflationRate() {
 export function usePeriodOfInvestment() {
   return useQueryParams("poi");
 }
+/**
+ * Adjust profits for API Inflation Rate in %
+ * @returns {[string,function(string): {void}]}
+ */
+export function useApiInflationRate() {
+  return useQueryParams("api");
+}
