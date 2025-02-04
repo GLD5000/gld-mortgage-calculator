@@ -83,7 +83,7 @@ export function useProductFee() {
  * @returns {[string,function(string): {void}]}
  */
 export function useFixedTerm() {
-  return useQueryParams("pf", "3");
+  return useQueryParams("ft", "3");
 }
 /**
  * Regular Overpayment in years
