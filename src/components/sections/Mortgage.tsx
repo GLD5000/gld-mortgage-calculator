@@ -68,6 +68,7 @@ export default function Mortgage({
             message="Product Fee"
             value={productFee}
             setValue={setProductFee}
+            digits={4}
           />
           <MortgageInputNumerical
             message="Overpayment"
