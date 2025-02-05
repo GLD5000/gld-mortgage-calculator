@@ -44,6 +44,7 @@ export default function Mortgage({
             message="Add Loan"
             value={additionalLoan}
             setValue={setAdditionalLoan}
+            digits={4}
           />
           <MortgageInputNumerical
             message="Mortgage Term"

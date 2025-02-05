@@ -34,6 +34,7 @@ export default function InvestmentOption({
             message="Investment Amount"
             value={optionalInvestmentAmount}
             setValue={setOptionalInvestmentAmount}
+            digits={4}
           />
           <MortgageInputNumerical
             message="Investment Rate"
@@ -45,6 +46,7 @@ export default function InvestmentOption({
             message="Monthly Rent"
             value={rent}
             setValue={setRent}
+            digits={4}
           />
         </div>
 

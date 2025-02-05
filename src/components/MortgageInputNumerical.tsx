@@ -7,11 +7,13 @@ export default function MortgageInputNumerical({
   value,
   setValue,
   unit = "£",
+  digits,
 }: {
   message: string;
   value: number | string;
   setValue: (value: string) => void;
   unit?: string;
+  digits?: number;
 }) {
   const [state, setState] = useState(value);
 
@@ -36,7 +38,21 @@ export default function MortgageInputNumerical({
             }
           }}
           onChange={(e) => setState(Number(e.target.value))}
-          onBlur={(e) => setValue(`${Number(e.target.value) || ''}`)}
+          onBlur={(e) => {
+            if (digits) {
+              const numberValue = Number(e.target.value) || 0;
+              const numberLength = `${numberValue}`.length;
+              if (numberValue > 0 && numberLength < digits) {
+                const padded = `${numberValue}`.padEnd(digits, "0");
+                setValue(padded);
+                setState(padded);
+              } else {
+                setValue(`${numberValue}`);
+              }
+            } else {
+              setValue(`${Number(e.target.value) || ""}`);
+            }
+          }}
         />
         {unit !== "£" && unit}
       </div>

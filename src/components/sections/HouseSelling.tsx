@@ -36,16 +36,19 @@ export default function HouseSelling({
             message="Current Mortgage"
             value={currentMortgage}
             setValue={setCurrentMortgage}
+            digits={6}
           />
           <MortgageInputNumerical
             message="Sale Price"
             value={salePrice}
             setValue={setSalePrice}
+            digits={6}
           />
           <MortgageInputNumerical
             message="Selling Solicitor Fees"
             value={sellingSolicitorFees}
             setValue={setSellingSolicitorFees}
+            digits={4}
           />
           <MortgageInputNumerical
             message="Agent Rate"

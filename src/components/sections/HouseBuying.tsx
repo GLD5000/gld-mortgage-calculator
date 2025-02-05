@@ -36,16 +36,19 @@ export default function HouseBuying({
             message="Add Capital"
             value={additionalCapital}
             setValue={setAdditionalCapital}
+            digits={5}
           />
           <MortgageInputNumerical
             message="House Price"
             value={housePrice}
             setValue={setHousePrice}
+            digits={6}
           />
           <MortgageInputNumerical
             message="Buying Solicitor Fees"
             value={buyingSolicitorFees}
             setValue={setBuyingSolicitorFees}
+            digits={4}
           />
         </div>
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
