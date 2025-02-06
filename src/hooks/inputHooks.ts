@@ -69,7 +69,7 @@ export function useMortgageTerm() {
  * @returns {[string,function(string): {void}]}
  */
 export function useMortgageRate() {
-  return useQueryParams("mr", "4.94");
+  return useQueryParams("mr", "4.69");
 }
 /**
  * Product Fee in £
