@@ -18,7 +18,7 @@ import {
   usePeriodOfInvestment,
   useApiInflationRate,
   useInvestmentRate,
-  useRent,
+  // useRent,
   useOptionalInvestmentAmount,
 } from "../hooks/inputHooks";
 import {
@@ -31,7 +31,7 @@ import {
   calculateInvestmentProfit,
   calculateInvestmentReturn,
   calculateLTV,
-  calculateMonthlyRentalDifference,
+  // calculateMonthlyRentalDifference,
   calculatePayment,
   calculatePrincipal,
   calculateProceeds,
@@ -42,7 +42,7 @@ import {
   calculateTotalCapital,
   calculateTotalCost,
   calculateTotalEquityYield,
-  calculateTotalRentalDifference,
+  // calculateTotalRentalDifference,
   calculateTotalSellingFees,
 } from "../utils/mortgageCalculators";
 import EquityGrowth from "../components/sections/EquityGrowth";
