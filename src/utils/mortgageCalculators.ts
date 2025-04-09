@@ -209,11 +209,11 @@ export function calculateTotalRentalDifference(
 
 export function calculateInvestmentProfit(
   investmentYield: number,
-  totalCostDiffRent: number,
+  // totalCostDiffRent: number,
   apiInflationRate: number
 
 ) {
-  const grossProfit = investmentYield - totalCostDiffRent;
+  const grossProfit = investmentYield ;//- totalCostDiffRent
   if (apiInflationRate && grossProfit > 0) {
     const inflationDecimal = 1 - apiInflationRate * 0.01;
     return grossProfit * inflationDecimal;

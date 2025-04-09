@@ -72,7 +72,7 @@ export default function MortgageCalculator() {
   const [periodOfInvestment, setPeriodOfInvestment] = usePeriodOfInvestment();
   const [apiInflationRate, setApiInflationRate] = useApiInflationRate();
   const [investmentRate, setInvestmentRate] = useInvestmentRate();
-  const [rent, setRent] = useRent();
+  // const [rent, setRent] = useRent();
   const [optionalInvestmentAmount, setOptionalInvestmentAmount] =
     useOptionalInvestmentAmount();
 
@@ -152,14 +152,14 @@ export default function MortgageCalculator() {
     Number(periodOfInvestment || fixedTerm),
     Number(mortgageRate)
   );
-  const monthlyCostDiffRent = calculateMonthlyRentalDifference(
-    Number(rent),
-    totalMonthlyCost
-  );
-  const totalCostDiffRent = calculateTotalRentalDifference(
-    Number(periodOfInvestment || fixedTerm),
-    monthlyCostDiffRent
-  );
+  // const monthlyCostDiffRent = calculateMonthlyRentalDifference(
+  //   Number(rent),
+  //   totalMonthlyCost
+  // );
+  // const totalCostDiffRent = calculateTotalRentalDifference(
+  //   Number(periodOfInvestment || fixedTerm),
+  //   monthlyCostDiffRent
+  // );
   const investmentAmount = optionalInvestmentAmount
     ? Number(optionalInvestmentAmount)
     : proceeds + Number(additionalCapital);
@@ -170,7 +170,7 @@ export default function MortgageCalculator() {
   );
   const investmentProfit = calculateInvestmentProfit(
     investmentYield,
-    totalCostDiffRent,
+    // totalCostDiffRent,
     Number(apiInflationRate)
   );
   return (
@@ -236,10 +236,10 @@ export default function MortgageCalculator() {
       <InvestmentOption
         investmentRate={investmentRate}
         setInvestmentRate={setInvestmentRate}
-        rent={rent}
-        setRent={setRent}
-        monthlyCostDiffRent={monthlyCostDiffRent}
-        totalCostDiffRent={totalCostDiffRent}
+        // rent={rent}
+        // setRent={setRent}
+        // monthlyCostDiffRent={monthlyCostDiffRent}
+        // totalCostDiffRent={totalCostDiffRent}
         investmentYield={investmentYield}
         investmentProfit={investmentProfit}
         optionalInvestmentAmount={Number(optionalInvestmentAmount)}

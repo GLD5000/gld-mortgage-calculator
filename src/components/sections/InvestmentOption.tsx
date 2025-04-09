@@ -5,10 +5,10 @@ import MortgageOutput from "../MortgageOutput";
 export default function InvestmentOption({
   investmentRate,
   setInvestmentRate,
-  rent,
-  setRent,
-  monthlyCostDiffRent,
-  totalCostDiffRent,
+  // rent,
+  // setRent,
+  // monthlyCostDiffRent,
+  // totalCostDiffRent,
   investmentYield,
   investmentProfit,
   optionalInvestmentAmount,
@@ -16,10 +16,10 @@ export default function InvestmentOption({
 }: {
   investmentRate: string;
   setInvestmentRate: (value: string) => void;
-  rent: string;
-  setRent: (value: string) => void;
-  monthlyCostDiffRent: number;
-  totalCostDiffRent: number;
+  // rent: string;
+  // setRent: (value: string) => void;
+  // monthlyCostDiffRent: number;
+  // totalCostDiffRent: number;
   investmentYield: number;
   investmentProfit: number;
   optionalInvestmentAmount: number;
@@ -42,23 +42,23 @@ export default function InvestmentOption({
             value={investmentRate}
             setValue={setInvestmentRate}
           />
-          <MortgageInputNumerical
+          {/* <MortgageInputNumerical
             message="Monthly Rent"
             value={rent}
             setValue={setRent}
             digits={4}
-          />
+          /> */}
         </div>
 
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
-          <MortgageOutput
+          {/* <MortgageOutput
             message="Month Cost diff"
             value={`${monthlyCostDiffRent.toLocaleString()}`}
           />
           <MortgageOutput
             message="Total Cost diff"
             value={`${totalCostDiffRent.toLocaleString()}`}
-          />
+          /> */}
           <MortgageOutput
             message="Investment Yield"
             value={`${investmentYield.toLocaleString()}`}
