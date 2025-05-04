@@ -4,14 +4,14 @@ import { useQueryParams } from "../utils/searchParamsURL";
  * @returns {[string,function(string): {void}]}
  */
 export function useCurrentMortgage() {
-  return useQueryParams("cm", "193005.79");
+  return useQueryParams("cm", "200000");
 }
 /**
  * Sale price in £
  * @returns {[string,function(string): {void}]}
  */
 export function useSalePrice() {
-  return useQueryParams("sp", "425000");
+  return useQueryParams("sp", "450000");
 }
 /**
  * Selling Agent Rate in %
