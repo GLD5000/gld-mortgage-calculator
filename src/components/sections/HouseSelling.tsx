@@ -30,7 +30,7 @@ export default function HouseSelling({
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
       <h2 className="text-left text-2xl">House Selling</h2>
-      <div className="grid">
+      <div className="grid gap-2">
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
           <MortgageInputNumerical
             message="Current Mortgage"

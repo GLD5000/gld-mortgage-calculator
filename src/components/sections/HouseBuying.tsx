@@ -30,7 +30,7 @@ export default function HouseBuying({
   return (
     <div className="grid gap-2 w-full bg-black justify-start">
       <h2 className="text-left text-2xl">House Buying</h2>
-      <div className="grid">
+      <div className="grid gap-2">
         <div className="flex flex-row flex-wrap gap-2 w-full bg-black">
           <MortgageInputNumerical
             message="Add Capital"
